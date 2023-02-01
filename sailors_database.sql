@@ -57,6 +57,9 @@ insert into rservers values
     (115,104,"2008-09-09");
 
 --commit
+select *from sailors;
+select *from boat;
+select *from rservers;
 
 --Find the colours of boats reserved by Albert
 select sailors.sid,sname,boat.bid,color from rservers
