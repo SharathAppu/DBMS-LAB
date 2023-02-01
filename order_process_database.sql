@@ -86,6 +86,12 @@ insert into shipment values
     (5, 5, 20201223);
 
 --commit
+select *from customer;
+select *from item;
+select *from orderitem;
+select *from orders;
+select *from warehouse;
+select *from shipment;
 
 --List the Order# and Ship_date for all orders shipped from Warehouse# "W2".
 SELECT orderid,ship_date FROM shipment WHERE warehouseid = 2;
