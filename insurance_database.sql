@@ -36,6 +36,49 @@ alter table participated add constraint foreign key(driverid) references person(
 alter table participated add constraint foreign key(report_num) references accident(report_num);
 
 --commit
+
+insert into person values
+    ('D111', 'Smith', 'Kuvempunagar'),
+    ('D222', 'Aravind', 'JP Nagar'),
+    ('D333', 'Bhojaraj', 'Udaygiri'),
+    ('D444', 'Devdas', 'Rajivnagar'),
+    ('D555', 'Naveen', 'Lakshmipuram');
+
+insert into car values
+    ('KA-20-AB-4223', 'Swift', 2020),
+    ('KA-20-BC-5674', 'WagonR', 2017),
+    ('KA-09-MA-1234', 'Alto', 2015),
+    ('KA-21-BD-4728', 'Mazda', 2019),
+    ('KA-19-CA-6374', 'Tiago', 2018);
+
+insert into accident values
+    (1,20200405, 'Nazarbad'),
+    (2,20191216, 'Gokulam'),
+    (3,20200514, 'Vijaynagar'),
+    (4,20190830, 'Kuvempunagar'),
+    (5,20210121, 'JSS Layout'),
+    (6,20210130, 'Hootgalli'),
+    (7,20210131, 'Hootgalli'),
+    (8,20220130, 'Bhogadi'),
+    (9,20220131, 'Bhogadi');
+
+insert into owns values
+    ('D444', 'KA-20-AB-4223'),
+    ('D222', 'KA-20-BC-5674'),
+    ('D333', 'KA-09-MA-1234'),
+    ('D111', 'KA-21-BD-4728'),
+    ('D555', 'KA-19-CA-6374');
+
+insert into participated values
+    ('D444', 'KA-20-AB-4223', 1, 20000),
+    ('D222', 'KA-20-BC-5674', 2, 10000),
+    ('D333', 'KA-09-MA-1234', 3, 15000),
+    ('D111', 'KA-21-BD-4728', 4, 5000),
+    ('D333', 'KA-19-CA-6374', 5, 25000);
+INSERT INTO participated VALUES ('D444', 'KA-20-AB-4223', 8, 75000);
+INSERT INTO participated VALUES ('D111', 'KA-21-BD-4728', 9, 75000);
+
+--commit
 SELECT * FROM person;
 SELECT * FROM car;
 SELECT * FROM accident;
