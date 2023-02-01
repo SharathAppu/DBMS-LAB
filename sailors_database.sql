@@ -110,3 +110,16 @@ CREATE TRIGGER prevent_boat_deletion
     IF num_reservations > 0 THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete boat with active reservations';
     END IF;
     END; //
+
+    (0R)
+
+CREATE TRIGGER prevent_boat_deletion
+    BEFORE DELETE ON boat
+    FOR EACH ROW
+    BEGIN
+    IF OLD.bid IN (SELECT bid FROM Reserves NATURAL JOIN Boats)
+    THEN 
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'The boat details you want to delete has active reservations....!';
+    END IF;
+    END; //
