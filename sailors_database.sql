@@ -14,12 +14,7 @@ create table if not exists boat(
 
 create table if not exists rservers(
     sid varchar(20) not null,
-    bid varchar(20) ninsert into boat values
-    -> (101,"Storm boat","blue"),
-    -> (102,"Willy","White"),
-    -> (103,"Pilly","Black"),
-    -> (104,"Hilly","Yellow"),
-    -> (105,"Titanic","Red");ot null,
+    bid varchar(20) not null,
     sdate date not null);
 
 alter table sailors add constraint primary key(sid);
