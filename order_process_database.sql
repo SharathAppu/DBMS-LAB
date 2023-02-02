@@ -102,7 +102,7 @@ SELECT cname, orders.orderid, warehouse.warehouseid, warehouse.city FROM shipmen
     INNER JOIN warehouse ON shipment.warehouseid = warehouse.warehouseid
     INNER JOIN orders ON orders.orderid = shipment.orderid
     INNER JOIN customer ON orders.custid = customer.custid
-    WHERE cname = 'Ashok';
+    WHERE cname = 'Kumar';
 
 --Produce a listing: Cname, #ofOrders, Avg_Order_Amt, where the middle column is the 
 --total number of orders by the customer and the last column is the average order 
