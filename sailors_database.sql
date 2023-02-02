@@ -85,8 +85,8 @@ WHERE NOT EXISTS
     (SELECT bid FROM rservers WHERE sid = sailors.sid));
 
 --Find the name and age of the oldest sailor.
-SELECT sname, age FROM Sailors 
-WHERE age = (SELECT MAX(age) FROM Sailors);
+SELECT sname, age FROM sailors 
+WHERE age = (SELECT MAX(age) FROM sailors);
 
 --For each boat which was reserved by at least 5 sailors with age >= 40, find the boat id and 
 --the average age of such sailors.
@@ -101,23 +101,25 @@ SELECT boat.bid, AVG(age) AS 'Averge age' FROM sailors
 CREATE VIEW sailors_by_rating AS SELECT sname, rating FROM sailors ORDER BY rating DESC;
 
 --A trigger that prevents boats from being deleted If they have active reservations.
+DELIMITER //
 CREATE TRIGGER prevent_boat_deletion
     BEFORE DELETE ON boat
     FOR EACH ROW
     BEGIN
     DECLARE num_reservations INT;
-    SET num_reservations = (SELECT COUNT(*) FROM reserves WHERE bid = OLD.bid);
+    SET num_reservations = (SELECT COUNT(*) FROM rservers WHERE bid = OLD.bid);
     IF num_reservations > 0 THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete boat with active reservations';
     END IF;
     END; //
 
     (0R)
 
+DELIMITER //
 CREATE TRIGGER prevent_boat_deletion
     BEFORE DELETE ON boat
     FOR EACH ROW
     BEGIN
-    IF OLD.bid IN (SELECT bid FROM Reserves NATURAL JOIN Boats)
+    IF OLD.bid IN (SELECT bid FROM rservers NATURAL JOIN boat)
     THEN 
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'The boat details you want to delete has active reservations....!';
